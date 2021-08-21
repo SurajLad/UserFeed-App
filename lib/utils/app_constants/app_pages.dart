@@ -1,3 +1,4 @@
+import 'package:freespace_test/modules/Posts/view/create_post.dart';
 import 'package:freespace_test/modules/Posts/view/home.dart';
 import 'package:freespace_test/modules/home/view/home.dart';
 import 'package:freespace_test/modules/splash/view/splash.dart';
@@ -17,6 +18,10 @@ class AppPages {
     GetPage(
       name: AppRoute.POSTS,
       page: () => UserPostsHome(),
+    ),
+    GetPage(
+      name: AppRoute.ADDPOSTS,
+      page: () => CreatePostPage(),
     ),
   ];
 }

@@ -27,4 +27,18 @@ class API extends GetConnect {
     );
     return feed;
   }
+
+  Future postUserPosts({String? userId, var body}) async {
+    bool isSucess = false;
+    await post(AppConstants().baseUrl + "/users/$userId/posts", body).then(
+      (response) {
+        print(response.statusCode);
+
+        if (response.statusCode == 200) {
+          isSucess = true;
+        }
+      },
+    );
+    return isSucess;
+  }
 }

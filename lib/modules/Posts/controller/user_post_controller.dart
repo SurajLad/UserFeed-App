@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:freespace_test/api/api_client.dart';
 import 'package:freespace_test/modules/home/model/feed.dart';
 import 'package:get/get.dart';
@@ -6,6 +9,10 @@ class UserPostsController extends GetxController {
   List<Posts>? userPosts = [];
   String? userId;
   RxString? userName = "".obs;
+
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() async {
@@ -19,6 +26,17 @@ class UserPostsController extends GetxController {
       },
     );
     super.onInit();
+  }
+
+  Future addUserPosts() async {
+    isLoading.value = true;
+    var body = {
+      "title": titleController.text,
+      "body": descriptionController.text
+    };
+    bool isSucess =
+        await API().postUserPosts(userId: userId, body: json.encode(body));
+    return isSucess;
   }
 
   @override

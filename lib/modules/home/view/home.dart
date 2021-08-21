@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         title: Text(
           "Users",
-          style: AppTextStyles.regularTextStyle,
+          style: AppTextStyles.appBarTextStyle,
         ),
       ),
       body: GetBuilder<HomeController>(builder: (controller) {
@@ -30,9 +30,14 @@ class Home extends StatelessWidget {
                         AppRoute.POSTS,
                         arguments: {
                           "userId": controller.feed?[index].id,
+                          "userName": controller.feed?[index].name,
                         },
                       );
                     },
+                    leading: Icon(
+                      Icons.account_circle,
+                      size: 30,
+                    ),
                     title: Text(
                       controller.feed?[index].name ?? "",
                       style: TextStyle(fontSize: 18),
